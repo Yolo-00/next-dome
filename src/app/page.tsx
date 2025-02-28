@@ -1,72 +1,28 @@
-"use client";
+import Link from "next/link";
 
-import { Swiper as SwiperType } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import Carousel from "@/components/Carousel";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/effect-coverflow";
-
-import { EffectCoverflow, Pagination } from "swiper/modules";
-import { useRef } from "react";
+const hrefUrl =
+  "https://get.revolut.com/E528/?af_channel=website_direct&af_dp=revolut%3A%2F%2Fapp&af_sub1=%7B%22conversion_page_url%22%3A%22https%3A%2F%2Fwww.revolut.com%2Fen-SG%2F%22%2C%22cookie_consent%22%3A%5B%5D%2C%22landing_page_url%22%3A%22https%3A%2F%2Fwww.revolut.com%2Fen-SG%2F%22%2C%22qr_code%22%3Afalse%2C%22website_client_id%22%3A%225b7cf120-d40d-4cb7-8f55-c061ad83dcaa%22%7D&deep_link_sub1=DEEPLINK&deep_link_value=revolut%3A%2F%2Fapp&pid=website";
 
 export default function Home() {
-  const swiperRef = useRef<SwiperType | null>(null);
-
   return (
-    <div className="w-1/2 mx-auto">
-      <div className="bg-gray-400">
-        <Swiper
-          effect={"coverflow"}
-          centeredSlides={true}
-          slidesPerView={"auto"}
-          coverflowEffect={{
-            rotate: 0,
-            stretch: 0,
-            depth: 200,
-            modifier: 1,
-            slideShadows: true,
-          }}
-          spaceBetween={40}
-          loop={true}
-          pagination={{
-            clickable: true,
-            dynamicBullets: true,
-          }}
-          modules={[EffectCoverflow, Pagination]}
-          onSlideChange={(e) => console.log(e, "slide change")}
-          onSwiper={(swiper) => {
-            console.log(swiper);
-            swiperRef.current = swiper;
-          }}
-          className="h-[300px] w-[600px]"
-        >
-          {Array.from({ length: 8 }).map((_, index) => (
-            <SwiperSlide key={index}>
-              {({ isPrev, isNext }) => (
-                <div
-                  onClick={() => {
-                    if (isPrev) {
-                      swiperRef.current?.slidePrev();
-                    }
-                    if (isNext) {
-                      swiperRef.current?.slideNext();
-                    }
-                  }}
-                >
-                  <img
-                    src={`https://swiperjs.com/demos/images/nature-${
-                      index + 1
-                    }.jpg`}
-                    alt={`Nature ${index + 1}`} // 建议添加alt属性
-                  />
-                </div>
-              )}
-            </SwiperSlide>
-          ))}
-        </Swiper>
+    <div className="pt-10 px-5 w-[100vw] mx-auto lg:w-[800px] lg:px-0">
+      <div className="text-[52px] font-semibold lg:text-center text-pretty">
+        Make your spend, well-spent
       </div>
+      <div className="font-semibold lg:text-center my-5 text-pretty">
+        Updating your wardrobe? Get cashback. When in Japan? Spend in Yen. Big
+        life goals? Reach them faster. However you spend — Revolut is all you
+        need.
+      </div>
+      <Link href={hrefUrl}>
+        <div className="w-[131px] h-[42px] text-center bg-[#191c1f] text-white leading-[42px] rounded-3xl lg:mx-auto">
+          Get started
+        </div>
+      </Link>
+
+      <Carousel />
     </div>
   );
 }

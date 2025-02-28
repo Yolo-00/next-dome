@@ -27,11 +27,12 @@ body {
 .swiper-slide {
   background-position: center;
   background-size: cover;
-  width: 200px !important;
-  height: 200px !important;
+  width: 290px !important;
+  height: 350px !important;
 }
 
 .swiper-slide img {
   display: block;
-  width: 100%;
+  width: 290px !important;
+  height: 350px !important;
 }
